@@ -14,7 +14,7 @@ This is Project Shanti (śāntiḥ) - which means peace in Sanksrit. The origin 
 4. Easy on the Eyes
   - Research has repeatedly shown a side effect from increases use of our portable devices and LCDs uptick results in increased astigmatism, dry eyes and headaches. The blue light prevents us from getting a good night's rest, albeit the wonders it can display. 
   
-
+-------
 ## Our Success Metrics
 
 #### Qualitative
@@ -24,7 +24,19 @@ We consider a 5 point NSAT on our device as a mark of consumer satisfaction for 
 A quanifiable metric for our final device benchmark is to consider the time from "thought" to action. This can be translated to the number of clicks to perform actions, the response time of applications and physical attributes such as blue light emissions and battery life.
 
 ## Our Device
-A lot of research has gone into designing Shanti. It originally began as a project for 
+A lot of research has gone into designing Shanti. It originally began as a replacement to a traditional mobile device utilizing an E-Ink display. Unfortunately, the display technology, although easy on the eyes, is not easily responsive. 
+
+The framework of the device utilizes an *always on* transparent cholesteric liquid crystal display (ChLCD) as commonly utilized in modern e-writers. The power and lifespan of which can last up to years. However, tradeoffs include the lack of clear way to record what has been written on the screen.
+
+Beneath the ChLCD is a high definition LCD - that augments the transparent display. We then begin to animate and join the two processes utlizing a touch sensor that interjoins the two screen interfaces to build a new working display that meets our requirements as mentioned above. 
+
+This is better vieweed as a demo.
+
+
+
+
+
+
 
 
 
