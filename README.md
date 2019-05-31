@@ -37,6 +37,31 @@ Beneath the ChLCD is a high definition LCD - that augments the transparent displ
 This is better viewed as a demo.
 
 
+### Sample Everyday User Scenarios 
+
+#### A student would like to take notes in class
+
+#### A researcher would like to learn about the different kinds of Whales
+
+#### A business administrator would like to compose a quick email
+
+#### A designer would like to design a new product
+
+#### A data scientist would like to merge different datasets
+
+#### A retired professor would like to engage in online conversation
+
+#### A gamer would like to engage in an interactive game
+
+#### A child would like to read a story
+
+
+
+
+
+
+
+
 
 
 
