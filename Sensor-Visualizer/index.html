@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO Stream</title>
+  </head>
+  <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      socket.on('data', function(msg){
+        alert('data has been recieved ' + msg);
+      });
+    </script>
+  <body>
+    <p>Hello!!!!</p>
+  </body>
+</html>
