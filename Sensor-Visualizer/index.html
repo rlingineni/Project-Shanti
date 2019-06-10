@@ -1,16 +1,60 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Socket.IO Stream</title>
-  </head>
-  <script src="/socket.io/socket.io.js"></script>
-    <script>
-      var socket = io();
-      socket.on('data', function(msg){
-        alert('data has been recieved ' + msg);
-      });
-    </script>
-  <body>
-    <p>Hello!!!!</p>
-  </body>
+
+<head>
+  <script src="./dist/Chart.min.js"></script>
+  <title>Socket.IO Stream</title>
+</head>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io();
+  var plotPoints = [];
+</script>
+
+<body>
+  <p>Hello!!!!</p>
+  <canvas id="myChart" width="500" height="500"></canvas>
+  <script>
+    var color = Chart.helpers.color;
+    var ctx = document.getElementById('myChart');
+    var scatterChart = new Chart(ctx, {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: 'Scatter Dataset',
+          backgroundColor: 'rgba(128, 0, 0, 0.1)',
+          data: plotPoints
+        }]
+      },
+      options: {
+        scales: {
+          xAxes: [{
+            type: 'linear',
+            position: 'bottom',
+            beginAtZero: true,   // minimum value will be 0.
+            max: 300
+          }],
+          yAxes: [{
+            display: true,
+            ticks: {
+              beginAtZero: true,   // minimum value will be 0.
+              max: 300
+            }
+          }]
+        },
+        responsive: false
+      }
+    });
+  </script>
+  <script>
+    socket.on('data', function (msg) {
+      //keep pushing to plot points
+      console.log(msg);
+      plotPoints.push(msg)
+      scatterChart.update();
+      //alert('data has been recieved ' + msg);
+    });
+  </script>
+</body>
+
 </html>
