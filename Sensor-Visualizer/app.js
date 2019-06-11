@@ -31,17 +31,29 @@ http.listen(1010, function(){
 
 Sensor.registerForNotifs((buffer)=> {
 
-    //parse the buffer data and get the elements we want
+    let numTouches = buffer[1];
+    
     let x = buffer[6];
     let y = buffer[8];
-    
+
+    if(numTouches == 2){
+        //parse the buffer data and get the elements we want
+        x = buffer[15];
+        y = buffer[17];
+       
+
+
+    }
+ 
+
     let line = '';
 
     buffer.forEach((val)=> line+=val + ' ');
     console.log(line);
-    console.log(x,y);
+    console.log(buffer[6],buffer[8])
+    console.log(buffer[15],buffer[17])
 
   
     //emit sensor data
-    io.emit('data', {x,y});
+    io.emit('data', {x,y, numTouches});
 },5);

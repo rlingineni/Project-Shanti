@@ -8,7 +8,8 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
   var socket = io();
-  var plotPoints = [];
+  var finger1Points = [];
+  var finger2Points = [];
 </script>
 
 <body>
@@ -23,8 +24,13 @@
         datasets: [{
           label: 'Scatter Dataset',
           backgroundColor: 'rgba(128, 0, 0, 0.1)',
-          data: plotPoints
+          data: finger1Points
+        }, {
+          label: 'Scatter Dataset',
+          backgroundColor: 'rgba(0, 0, 128, 0.1)',
+          data: finger2Points
         }]
+
       },
       options: {
         scales: {
@@ -49,21 +55,26 @@
     });
   </script>
   <script>
-    
+
     socket.on('data', function (msg) {
-      //keep pushing to plot points
-      plotPoints.push(msg)
-      
-      if(plotPoints.length > 10){
-        plotPoints.shift();
+      console.log(msg);
+      switch (msg.numTouches) {
+        case 1: finger1Points.push(msg); break;
+        case 2: finger2Points.push(msg); break;
+      }
+
+
+      if(finger1Points.length > 10 || finger2Points.length > 10){
+        finger1Points.shift();
+        finger2Points.shift();
       }
 
       scatterChart.update();
       //alert('data has been recieved ' + msg);
     });
-    
 
-    setInterval(()=>{console.log("remove");  plotPoints.splice(0,10); scatterChart.update(0)} , 1000);
+  
+   // setInterval(()=>{console.log("remove");  plotPoints.splice(0,10); scatterChart.update(0)} , 1000);
 
 
   </script>

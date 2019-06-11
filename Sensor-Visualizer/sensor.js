@@ -14,9 +14,9 @@ function registerForNotifs(callback){
    });
 }
 
-device.on('data', function(buffer) {
+/*device.on('data', function(buffer) {
    console.log(buffer);
-});
+});*/
 
 
 module.exports = {registerForNotifs};
