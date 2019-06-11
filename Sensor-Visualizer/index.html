@@ -13,7 +13,7 @@
 
 <body>
   <p>Hello!!!!</p>
-  <canvas id="myChart" width="500" height="500"></canvas>
+  <canvas id="myChart" width="800" height="800"></canvas>
   <script>
     var color = Chart.helpers.color;
     var ctx = document.getElementById('myChart');
@@ -31,8 +31,10 @@
           xAxes: [{
             type: 'linear',
             position: 'bottom',
-            beginAtZero: true,   // minimum value will be 0.
-            max: 300
+            ticks: {
+              beginAtZero: true,   // minimum value will be 0.
+              max: 300
+            }
           }],
           yAxes: [{
             display: true,
@@ -47,13 +49,23 @@
     });
   </script>
   <script>
+    
     socket.on('data', function (msg) {
       //keep pushing to plot points
-      console.log(msg);
       plotPoints.push(msg)
+      
+      if(plotPoints.length > 10){
+        plotPoints.shift();
+      }
+
       scatterChart.update();
       //alert('data has been recieved ' + msg);
     });
+    
+
+    setInterval(()=>{console.log("remove");  plotPoints.splice(0,10); scatterChart.update(0)} , 1000);
+
+
   </script>
 </body>
 

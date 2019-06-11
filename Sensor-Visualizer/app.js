@@ -29,18 +29,19 @@ http.listen(1010, function(){
 });
 
 
-Sensor.subscribe((buffer)=> {
+Sensor.registerForNotifs((buffer)=> {
 
     //parse the buffer data and get the elements we want
-
-    let x = buffer[2];
-    let y = buffer[5];
+    let x = buffer[6];
+    let y = buffer[8];
     
     let line = '';
 
     buffer.forEach((val)=> line+=val + ' ');
     console.log(line);
     console.log(x,y);
+
+  
     //emit sensor data
     io.emit('data', {x,y});
 },5);
