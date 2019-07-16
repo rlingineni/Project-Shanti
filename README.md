@@ -1,6 +1,6 @@
 # Project-Shanti
 
-This is Project Shanti (śāntiḥ) - which means peace in Sanksrit. The origin of this project began as a quest to find and explore how we could design a better everyday device that:
+This is Project Shanti (śhānti) - which means peace in Sanksrit. The origin of this project began as a quest to find and explore how we could design a better everyday device that:
 
 1. **Is not Absorbing**
 
