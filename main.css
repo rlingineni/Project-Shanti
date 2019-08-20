@@ -109,11 +109,11 @@ a:hover,a:focus{color:#5173bd;}
 .masthead{
 	position:relative;
 	padding:80px 15px;
-	color:#FFF;
+	color:white;
 	text-align:center;
 	text-shadow:0 1px 0 rgba(0,0,0,.1);
 	background-color:#6883cc;
-	background-image:url("./cover.png");
+	background-image:url("./masked-bg.png");
 	background-repeat:no-repeat;
 	background-position:center center;
 	background-attachment:fixed;
@@ -486,7 +486,7 @@ to {
 	text-align: center;
 	text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
 	background-color: #6883cc;
-	background-image:url("./shanti.png");
+	background-image:url("./writing.png");
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-attachment: fixed;
