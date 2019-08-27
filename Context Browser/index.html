@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World!</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.4.0/fabric.min.js"
+      integrity="sha256-42MK8ODIRAEkCECsfaZOXb2psvEjAD0vK3AL3eNe86w="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+   
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+      integrity="sha256-9mbkOfVho3ZPXfM7W8sV2SndrGDuh7wuyLjtsWeTI1Q="
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div
+      class="ui visible sidebar vertical menu">
+      <div class="header item">
+          <h1>Home</h1>
+        </div>
+      <a class="item">
+        Trip to Japan
+      </a>
+      <a class="active item">
+        Apartment Hunting
+      </a>
+      <a class="item">
+        Teach CS
+      </a>
+    </div>
+
+    <div class="pusher"  style="margin-left: 24%; padding-top: 13px;">
+      <h2>Apartment Hunting</h2>
+      <p> We are using Node.js. Chromaium, and Electron </p>
+      <button class="ui button" onclick="renderBrowser()">Gimme Browser</button>
+      <canvas id="c" height="500" width="650"></canvas>
+    </div>
+
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+
+    <script>
+      (function() {
+        var canvas = (this.__canvas = new fabric.Canvas("c"));
+        fabric.Object.prototype.transparentCorners = false;
+
+        var rect1 = new fabric.Rect({
+          width: 355,
+          height: 200,
+          left: 0,
+          top: 0,
+          angle: 0,
+          hasRotatingPoint: false,
+          fill: "#C4C4C4"
+        });
+
+       
+
+        canvas.add(rect1);
+        canvas.on({
+          "object:modified": onChange,
+          'object:moving': moveHandler
+        });
+        
+        function moveHandler(evt) {
+            ipcRenderer.send('remove-browser')
+        }
+
+        function onChange(evt) {
+          var movingObject = evt.target;
+          let objLeft =  Math.floor(Math.max(0,movingObject.get('left')));
+          let objTop = Math.floor(Math.max(0,movingObject.get('top')));
+          let height = Math.floor(movingObject.getScaledHeight());
+          let width = Math.floor(movingObject.getScaledWidth());
+          console.log("left: " , movingObject.get('left'), movingObject.get('top'));
+          movingObject.set('left',objLeft)
+          movingObject.set('top', objTop)
+          let canvasOrigin = getCanvasReference('c');
+          let left = canvasOrigin.left + objLeft; 
+          let top = canvasOrigin.top + objTop;
+          console.log({left, top, height, width});
+          ipcRenderer.send('render-browser',{left, top, height, width})
+        }
+      })();
+    </script>
+  </body>
+</html>
